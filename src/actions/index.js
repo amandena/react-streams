@@ -23,6 +23,11 @@ export const signOut = () => {
 }
 
 export const createStream = formValues => async (dispatch) => {
-  const res = streams.post('/streams', formValues)
+  const res = await streams.post('/streams', formValues)
   dispatch({ type: CREATE_STREAM, payload: res.data })
+}
+
+export const fetchStreams = () => async dispatch => {
+  const res = await streams.get('/streams')
+  dispatch({ type: FETCH_STREAMS, payload: res.data })
 }
